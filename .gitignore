@@ -43,3 +43,6 @@ next-env.d.ts
 
 # admin panel content in local development
 /.data/
+
+# Supabase CLI local files
+/supabase/.temp/
