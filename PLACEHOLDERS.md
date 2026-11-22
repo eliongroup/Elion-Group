@@ -100,7 +100,7 @@ All five documents are **DRAFT – to be reviewed by a lawyer**. Bracketed items
 Sign in at **/admin** to add, edit, reorder and hide **team members** (Team page) and to write, publish and delete **blog articles** (/blog, plus a "Latest articles" block on the home page once one is published).
 
 Setup on Vercel, once:
-1. **Storage → Create → Blob**, connect it to this project (this sets `BLOB_READ_WRITE_TOKEN`). Content and uploaded images are stored there.
+1. **Settings → Environment Variables**: add `SUPABASE_URL`, `SUPABASE_SECRET_KEY` (service_role key) and `SUPABASE_BUCKET` (`cms`). Team members, articles and all uploaded images are stored in that public Supabase Storage bucket.
 2. **Settings → Environment Variables**: add `ADMIN_PASSWORD` (a long, unique password). Optionally `ADMIN_SESSION_SECRET`.
 3. Redeploy.
 

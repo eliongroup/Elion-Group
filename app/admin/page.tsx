@@ -31,7 +31,7 @@ export default async function AdminDashboard() {
     <AdminShell title="Welcome back" description="Manage the people and the articles shown on the ELION GROUP website." current="/admin">
       {storage === "missing" && (
         <Notice tone="warning">
-          Saving is switched off: connect a Vercel Blob store to this project (Storage → Blob), then redeploy.
+          Saving is switched off: set SUPABASE_URL and SUPABASE_SECRET_KEY in the environment variables, then redeploy.
         </Notice>
       )}
       {storage === "local" && (

@@ -26,8 +26,8 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     qualities: [70, 80],
-    // Images uploaded in the admin panel are stored in Vercel Blob.
-    remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }],
+    // Images uploaded in the admin panel are stored in Supabase Storage (public bucket).
+    remotePatterns: [{ protocol: "https", hostname: "*.supabase.co", pathname: "/storage/v1/object/public/**" }],
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];

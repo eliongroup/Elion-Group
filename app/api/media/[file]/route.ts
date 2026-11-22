@@ -2,7 +2,7 @@ import { readLocalImage } from "@/lib/cms/storage";
 
 const TYPES: Record<string, string> = { jpg: "image/jpeg", png: "image/png", webp: "image/webp", avif: "image/avif" };
 
-/** Local development only: serves images uploaded in the admin panel from ./.data/media. On Vercel, images live in Vercel Blob. */
+/** Local development only: serves images uploaded in the admin panel from ./.data/media. In production, images live in Supabase Storage. */
 export async function GET(_request: Request, { params }: RouteContext<"/api/media/[file]">) {
   const { file } = await params;
   const type = TYPES[file.split(".").pop() ?? ""];
