@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="140 100 222 340" role="img" aria-label="ELION GROUP">
+  <defs>
+    <linearGradient id="g" gradientUnits="userSpaceOnUse" x1="150" y1="100" x2="360" y2="440">
+      <stop offset="0" stop-color="#DCC390"/><stop offset=".55" stop-color="#B8955A"/><stop offset="1" stop-color="#957338"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#g)" d="M150 112H352V170C348 150 338 138 318 136H208V244H298C304 240 307 233 309 224H318V288H309C307 279 304 272 298 268H208V376H318C338 374 348 362 352 342V400H150V392H168V120H150Z"/>
+  <rect x="150" y="432" width="202" height="3" fill="url(#g)"/>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><linearGradient id="g" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="512" y2="512">
+  <stop offset="0" stop-color="#E2CA98"/><stop offset=".45" stop-color="#C2A065"/><stop offset=".75" stop-color="#B08A4E"/><stop offset="1" stop-color="#8E6C33"/></linearGradient></defs><rect x="60" y="60" width="392" height="392" fill="none" stroke="url(#g)" stroke-width="2"/>
+  <rect x="74" y="74" width="364" height="364" fill="none" stroke="url(#g)" stroke-width="1" opacity=".7"/>
+  <g fill="url(#g)">
+    <rect x="150" y="128" width="96" height="10"/>
+    <rect x="160" y="142" width="76" height="6"/>
+    <rect x="170" y="152" width="56" height="208"/>
+    <rect x="160" y="364" width="76" height="6"/>
+    <rect x="150" y="374" width="96" height="10"/>
+    <rect x="226" y="152" width="140" height="22"/>
+    <rect x="226" y="245" width="112" height="22"/>
+    <rect x="226" y="338" width="140" height="22"/>
+  </g>
+  <g fill="#141414" opacity=".55"><rect x="184" y="156" width="2" height="200"/><rect x="197" y="156" width="2" height="200"/><rect x="210" y="156" width="2" height="200"/></g></svg>

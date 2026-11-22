@@ -1,0 +1,453 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   ELION GROUP — design tokens
+   Gold is an accent only: lines, icons, focus/hover marks and the one
+   primary CTA fill. It is never used for body text on light grounds.
+   ------------------------------------------------------------------ */
+@theme {
+  --color-white: #ffffff;
+  --color-ivory: #faf8f3;
+  --color-ivory-deep: #f2eee4;
+  --color-ink: #1a1a1a;
+  --color-ink-soft: #2a2826;
+  --color-muted: #6b6b6b;
+  --color-line: rgb(26 26 26 / 0.12);
+  --color-line-strong: rgb(26 26 26 / 0.28);
+  --color-line-light: rgb(250 248 243 / 0.22);
+  --color-gold: #b8955a;
+  --color-gold-light: #c9a96e;
+  --color-gold-deep: #9e7b3f;
+  --color-gold-ink: #8a6a33; /* only gold allowed as small text on white (5.0:1) */
+  --color-error: #a4282c;
+  --color-success: #2f5d46;
+
+  --font-serif: var(--font-marcellus), "Marcellus", Georgia, serif;
+  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+
+  --text-display: clamp(2.375rem, 1.2rem + 5vw, 5.75rem);
+  --text-display--line-height: 1.04;
+  --text-h1: clamp(2.125rem, 1.4rem + 3.2vw, 4rem);
+  --text-h1--line-height: 1.08;
+  --text-h2: clamp(1.75rem, 1.3rem + 2vw, 2.875rem);
+  --text-h2--line-height: 1.15;
+  --text-h3: clamp(1.3125rem, 1.15rem + 0.6vw, 1.75rem);
+  --text-h3--line-height: 1.25;
+  --text-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --text-lead--line-height: 1.6;
+  --text-label: 0.6875rem;
+  --text-label--line-height: 1.4;
+
+  --tracking-label: 0.24em;
+
+  --radius-none: 0;
+  --shadow-float: 0 24px 48px -24px rgb(26 26 26 / 0.18);
+
+  --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --breakpoint-3xl: 112rem;
+}
+
+:root {
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+  --section-y: clamp(4.5rem, 12vw, 12.5rem);
+  --gradient-gold: linear-gradient(135deg, #c9a96e 0%, #b8955a 50%, #9e7b3f 100%);
+  /* Button fill stays light enough for charcoal text (>= 5.8:1 everywhere) */
+  --gradient-gold-btn: linear-gradient(135deg, #d4b984 0%, #b8955a 100%);
+  --header-h: 5rem;
+  color-scheme: light;
+}
+
+/* Large screens: scale the whole interface so it fills big monitors
+   (media queries stay in px, so breakpoints are unaffected). */
+@media (min-width: 1680px) {
+  html {
+    font-size: 106.25%;
+  }
+}
+@media (min-width: 1920px) {
+  html {
+    font-size: 112.5%;
+  }
+}
+@media (min-width: 2400px) {
+  html {
+    font-size: 131.25%;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgb(184 149 90 / 0.15);
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
+  body {
+    /* Guard against any sideways scroll (clip keeps sticky positioning working) */
+    overflow-x: clip;
+    background: var(--color-white);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  @media (min-width: 64rem) {
+    body {
+      font-size: 1.0625rem;
+    }
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: rgb(184 149 90 / 0.28);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .on-dark :focus-visible,
+  .on-dark:focus-visible {
+    outline-color: var(--color-ivory);
+  }
+  [dir="rtl"] .flip-rtl {
+    transform: scaleX(-1);
+  }
+}
+
+@layer components {
+  /* Monumental Roman capitals for page titles */
+  .title-roman {
+    font-family: var(--font-serif);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 400;
+  }
+  .container-lux {
+    width: 100%;
+    max-width: 90rem;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+  .section-y {
+    padding-block: var(--section-y);
+  }
+  .label {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    line-height: 1.4;
+    font-weight: 500;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+  .gold-rule {
+    display: inline-block;
+    height: 1px;
+    width: 2.5rem;
+    background: var(--gradient-gold);
+    flex: none;
+  }
+  .hairline {
+    height: 1px;
+    background: var(--color-line);
+  }
+
+  /* Underline that draws from the start side */
+  .link-draw {
+    position: relative;
+    text-decoration: none;
+  }
+  .link-draw::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: -0.25em;
+    height: 1px;
+    width: 100%;
+    background: var(--gradient-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 400ms var(--ease-lux);
+  }
+  [dir="rtl"] .link-draw::after {
+    transform-origin: right;
+  }
+  .link-draw:hover::after,
+  .link-draw:focus-visible::after,
+  .group:hover .link-draw::after,
+  .link-draw[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+  .link-draw-active::after {
+    transform: scaleX(1);
+  }
+  .link-draw-static::after {
+    transform: scaleX(0.35);
+  }
+
+  /* Legal prose */
+  .prose-legal {
+    max-width: 68ch;
+    color: var(--color-ink);
+  }
+  .prose-legal section + section {
+    margin-top: 3.5rem;
+    padding-top: 3.5rem;
+    border-top: 1px solid var(--color-line);
+  }
+  .prose-legal h2 {
+    font-size: var(--text-h3);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    scroll-margin-top: calc(var(--header-h) + 2rem);
+  }
+  .prose-legal h3 {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .prose-legal p,
+  .prose-legal li {
+    color: #3d3b38;
+  }
+  .prose-legal p + p {
+    margin-top: 1rem;
+  }
+  .prose-legal ul {
+    margin-top: 0.75rem;
+    padding-inline-start: 1.25rem;
+    list-style: none;
+  }
+  .prose-legal ul li {
+    position: relative;
+    margin-top: 0.5rem;
+  }
+  .prose-legal ul li::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: -1.25rem;
+    top: 0.85em;
+    width: 0.5rem;
+    height: 1px;
+    background: var(--color-gold);
+  }
+  .prose-legal a {
+    text-decoration: underline;
+    text-decoration-color: var(--color-gold);
+    text-underline-offset: 0.2em;
+  }
+  .prose-legal table {
+    width: 100%;
+    margin-top: 1rem;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  .prose-legal th,
+  .prose-legal td {
+    text-align: start;
+    padding: 0.75rem 1rem 0.75rem 0;
+    border-bottom: 1px solid var(--color-line);
+    vertical-align: top;
+  }
+  .prose-legal th {
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Motion. Content is visible without JS: elements only start hidden
+   once html.js is set, and never under reduced motion.
+   ------------------------------------------------------------------ */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes slow-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+.hero-rise {
+  animation: hero-rise 1.2s var(--ease-lux) both;
+}
+.slow-zoom {
+  animation: slow-zoom 20s var(--ease-lux) both;
+}
+/* Stops after ~8s so nothing keeps moving beside the content (WCAG 2.2.2) */
+.scroll-cue {
+  animation: scroll-cue 2.8s var(--ease-lux) 3;
+}
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 450ms var(--ease-lux),
+    transform 450ms var(--ease-lux);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal][data-shown] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Image curtain: large photographs open from the bottom and settle from a slight zoom.
+   Uses the individual `scale` property so it composes with the hover zoom (transform). */
+.js [data-reveal="image"] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 700ms var(--ease-lux);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal="image"] img {
+  scale: 1.05;
+  transition:
+    scale 1s var(--ease-lux),
+    transform 900ms var(--ease-lux);
+}
+.js [data-reveal="image"][data-shown] {
+  clip-path: inset(0 0 0 0);
+}
+.js [data-reveal="image"][data-shown] img {
+  scale: 1;
+}
+
+/* Page transition: content rises in gently on client-side navigation (not on first load) */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.page-enter {
+  animation: page-in 650ms var(--ease-lux) both;
+}
+
+/* Gold button: a soft light sweeps across on hover */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -60%;
+  width: 45%;
+  z-index: -1;
+  background: linear-gradient(100deg, transparent, rgb(255 255 255 / 0.45), transparent);
+  transform: skewX(-18deg) translateX(0);
+  transition: transform 900ms var(--ease-lux);
+  pointer-events: none;
+}
+.btn-shine:hover::after,
+.btn-shine:focus-visible::after {
+  transform: skewX(-18deg) translateX(420%);
+}
+
+/* Smooth in-page scrolling (anchors), only when motion is welcome */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Cookie banner: hidden before first paint once a choice exists (reopened via settings) */
+.has-consent [data-cookie-banner]:not([data-open]) {
+  display: none;
+}
+
+/* Image zoom inside its frame on hover */
+.zoom-frame {
+  overflow: hidden;
+}
+.zoom-frame img {
+  transition: transform 900ms var(--ease-lux);
+}
+.group:hover .zoom-frame img,
+.group:focus-visible .zoom-frame img {
+  transform: scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .js [data-reveal="image"] {
+    clip-path: none;
+  }
+  .js [data-reveal="image"] img {
+    scale: 1;
+  }
+  .page-enter {
+    animation: none;
+  }
+  .btn-shine::after {
+    display: none;
+  }
+  .group:hover .zoom-frame img {
+    transform: none;
+  }
+  .scroll-cue {
+    animation: none;
+  }
+}
